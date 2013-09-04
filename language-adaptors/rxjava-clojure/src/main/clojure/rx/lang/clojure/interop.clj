@@ -169,7 +169,7 @@
                      (filter #(= 1 (count (val %))))
                      (mapcat val)
                      seq)]
-    (println "Skipping ambiguous overloads: " name "," (- (count methods) (count keepers)))
+    (println "Skipping ambiguous overloads: " name "," (- (count methods) (count keepers)) "," (remove (set keepers) methods))
     (when keepers
       [[(dashify name) keepers]])))
 
@@ -219,7 +219,7 @@
     * Method overloads only distinguishable by argument type (i.e. same arity) are
       not wrapped. THIS IS THE TRICKY PART.
 
-  Note that this may def functions that conflict with those in clojure.core so 
+  Note that this may def functions that conflict with those in clojure.core so
   clojure.core should not be referred into the current ns.
 
   "
